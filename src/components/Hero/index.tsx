@@ -9,7 +9,7 @@ type Props = {
 const Hero = ({ image, title, category }: Props) => (
     <Container style={{ backgroundImage: `url(${image})` }}>
         <Overlay>
-            <Content className="container">
+            <Content>
                 <Tipo>{category}</Tipo>
                 <Titulo>{title}</Titulo>
             </Content>

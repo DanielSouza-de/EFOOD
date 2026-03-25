@@ -20,8 +20,9 @@ type ListProps = {
 export const List = styled.ul<ListProps>`
     display: grid;
     grid-template-columns: repeat(${(props) => props.columns || 2}, 1fr);
-    column-gap: 24px;
+    gap: 24px;
     margin-top: 40px;
+    align-items: stretch;
 `
 
 export const Title = styled.h2`

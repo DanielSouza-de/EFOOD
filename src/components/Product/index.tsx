@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Tag from '../Tag'
 
 import { Card, Descricao, Titulo } from './styles'
+import estrela from '../../images/estrela.png'
 
 type Props = {
     title: string
@@ -13,6 +14,7 @@ type Props = {
     rating?: number
     buttonLabel?: string
     onButtonClick?: () => void
+    variant?: 'default' | 'category'
 }
 
 const Product = ({
@@ -24,9 +26,10 @@ const Product = ({
     showRating = true,
     rating,
     buttonLabel = 'Saiba mais',
-    onButtonClick
+    onButtonClick,
+    variant = 'default'
 }: Props) => (
-    <Card>
+    <Card variant={variant}>
         <div className="image-container">
             <img src={image} alt={title} />
 
@@ -36,14 +39,21 @@ const Product = ({
             </div>
         </div>
 
-        <div className="content">
-            <div className="header">
-                <Titulo>{title}</Titulo>
-                {showRating && rating && <span>⭐ {rating}</span>}
+        <div className="body">
+            <div className="content">
+                <div className="header">
+                    <Titulo>{title}</Titulo>
+
+                    {showRating && rating && (
+                        <span>
+                            {rating}
+                            <img src={estrela} alt="estrela" />
+                        </span>
+                    )}
+                </div>
+
+                <Descricao>{description}</Descricao>
             </div>
-
-            <Descricao>{description}</Descricao>
-
             {onButtonClick ? (
                 <button onClick={onButtonClick}>{buttonLabel}</button>
             ) : (

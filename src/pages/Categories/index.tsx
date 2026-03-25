@@ -9,37 +9,43 @@ import banner from '../../images/prato2.png'
 const promocoes: Game[] = [
     {
         id: 1,
-        description: 'A clássica Marguerita...',
+        description:
+            'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
         title: 'Pizza Marguerita',
         image: prato3
     },
     {
         id: 2,
-        description: 'A clássica Marguerita...',
+        description:
+            'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
         title: 'Pizza Marguerita',
         image: prato3
     },
     {
         id: 3,
-        description: 'A clássica Marguerita...',
+        description:
+            'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
         title: 'Pizza Marguerita',
         image: prato3
     },
     {
         id: 4,
-        description: 'A clássica Marguerita...',
+        description:
+            'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
         title: 'Pizza Marguerita',
         image: prato3
     },
     {
         id: 5,
-        description: 'A clássica Marguerita...',
+        description:
+            'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
         title: 'Pizza Marguerita',
         image: prato3
     },
     {
         id: 6,
-        description: 'A clássica Marguerita...',
+        description:
+            'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
         title: 'Pizza Marguerita',
         image: prato3
     }
@@ -61,6 +67,7 @@ const Categories = () => (
             showRating={false}
             columns={3}
             buttonLabel="Adicionar ao carrinho"
+            variant="category"
         />
     </>
 )

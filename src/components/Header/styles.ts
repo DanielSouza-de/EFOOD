@@ -8,8 +8,8 @@ type Props = {
 
 export const Imagem = styled.div<Props>`
     width: 100%;
-    height: ${(props) => (props.variant === 'home' ? '380px' : 'auto')};
-    padding: ${(props) => (props.variant === 'categories' ? '16px 0' : '0')};
+    height: ${(props) => (props.variant === 'home' ? '380px' : '185px')};
+    padding: ${(props) => (props.variant === 'categories' ? '40px 0' : '0')};
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -17,7 +17,8 @@ export const Imagem = styled.div<Props>`
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: ${(props) =>
+        props.variant === 'categories' ? 'flex-start' : 'center'};
 
     .container {
         max-width: 1024px;

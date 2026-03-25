@@ -10,14 +10,16 @@ export type Props = {
     columns?: number
     buttonLabel?: string
     onButtonClick?: (game: Game) => void
+    variant?: 'default' | 'category'
 }
 
 const ProductsList = ({
     games,
-    showRating,
-    columns,
+    showRating = true,
+    columns = 2,
     buttonLabel,
-    onButtonClick
+    onButtonClick,
+    variant = 'default'
 }: Props) => (
     <Container>
         <div className="container">
@@ -33,6 +35,7 @@ const ProductsList = ({
                         showRating={showRating}
                         rating={game.rating}
                         buttonLabel={buttonLabel}
+                        variant={variant}
                         onButtonClick={
                             onButtonClick
                                 ? () => onButtonClick(game)

@@ -2,24 +2,45 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 
-export const Card = styled.div`
-    background-color: ${cores.branca};
-    border-radius: 8px;
-    overflow: hidden;
+type CardProps = {
+    variant?: 'default' | 'category'
+}
+
+export const Card = styled.div<CardProps>`
     display: flex;
     flex-direction: column;
+    height: 100%;
     margin-top: 16px;
-    color: ${cores.preta};
     position: relative;
-    padding-bottom: 48px;
+
+    color: ${(props) =>
+        props.variant === 'category' ? cores.fundo2 : cores.preta};
+
+    ${(props) =>
+        props.variant === 'category' &&
+        `
+    ${Titulo} {
+        color: ${cores.fundo2};
+    }
+
+    ${Descricao} {
+        color: ${cores.fundo2};
+    }
+`}
 
     .image-container {
         position: relative;
+
+        background-color: ${(props) =>
+            props.variant === 'category' ? `${cores.rose}` : 'transparent'};
+
+        padding: ${(props) => (props.variant === 'category' ? '8px' : '0')};
     }
 
     img {
         width: 100%;
-        height: 200px;
+        height: ${(props) =>
+            props.variant === 'category' ? '160px' : '200px'};
         object-fit: cover;
         display: block;
     }
@@ -32,27 +53,59 @@ export const Card = styled.div`
         gap: 8px;
     }
 
-    .content {
+    .body {
+        border: ${(props) =>
+            props.variant === 'category' ? 'none' : `1px solid ${cores.rose}`};
+
+        border-top: none;
+
+        background-color: ${(props) =>
+            props.variant === 'category' ? cores.rose : cores.branca};
+
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
         padding: 8px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin-bottom: 8px;
     }
 
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
     }
 
     button {
-        position: absolute;
-        bottom: 16px;
-        left: 16px;
+        margin-top: auto;
+        width: 100%;
 
-        background-color: ${cores.rose};
-        color: white;
+        background-color: ${(props) =>
+            props.variant === 'category' ? cores.fundo2 : cores.rose};
+
+        color: ${(props) =>
+            props.variant === 'category' ? cores.rose : cores.branca};
+
         border: none;
-        padding: 6px 12px;
+        padding: 8px;
         font-size: 12px;
-
         cursor: pointer;
     }
 
