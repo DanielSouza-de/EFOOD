@@ -1,20 +1,21 @@
-import Game from '../../models/Game'
+import { Product as ProductType } from '../../models/Product'
 import Product from '../Product'
 
 import { Container, List } from './styles'
 
 export type Props = {
-    title: string
-    games: Game[]
+    title?: string
+    items: ProductType[]
     showRating?: boolean
     columns?: number
     buttonLabel?: string
-    onButtonClick?: (game: Game) => void
+    onButtonClick?: (item: ProductType) => void
     variant?: 'default' | 'category'
 }
 
 const ProductsList = ({
-    games,
+    title,
+    items,
     showRating = true,
     columns = 2,
     buttonLabel,
@@ -23,22 +24,19 @@ const ProductsList = ({
 }: Props) => (
     <Container>
         <div className="container">
+            {title && <h2>{title}</h2>}
+
             <List columns={columns}>
-                {games.map((game) => (
+                {items.map((item) => (
                     <Product
-                        key={game.id}
-                        category={game.category}
-                        description={game.description}
-                        image={game.image}
-                        system={game.system}
-                        title={game.title}
+                        key={item.id}
+                        product={item}
                         showRating={showRating}
-                        rating={game.rating}
                         buttonLabel={buttonLabel}
                         variant={variant}
                         onButtonClick={
                             onButtonClick
-                                ? () => onButtonClick(game)
+                                ? () => onButtonClick(item)
                                 : undefined
                         }
                     />

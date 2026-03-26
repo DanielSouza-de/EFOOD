@@ -1,59 +1,50 @@
 import { Link } from 'react-router-dom'
 import Tag from '../Tag'
-
 import { Card, Descricao, Titulo } from './styles'
 import estrela from '../../images/estrela.png'
 
+import { Product as ProductType } from '../../models/Product'
+
 type Props = {
-    title: string
-    description: string
-    image: string
-    category?: string
-    system?: string
+    product: ProductType
     showRating?: boolean
-    rating?: number
     buttonLabel?: string
     onButtonClick?: () => void
     variant?: 'default' | 'category'
 }
 
 const Product = ({
-    title,
-    category,
-    system,
-    description,
-    image,
+    product,
     showRating = true,
-    rating,
     buttonLabel = 'Saiba mais',
     onButtonClick,
     variant = 'default'
 }: Props) => (
     <Card variant={variant}>
         <div className="image-container">
-            <img src={image} alt={title} />
+            <img src={product.foto} alt={product.nome} />
 
             <div className="tags">
-                {category && <Tag>{category}</Tag>}
-                {system && <Tag>{system}</Tag>}
+                {product.categoria && <Tag>{product.categoria}</Tag>}
             </div>
         </div>
 
         <div className="body">
             <div className="content">
                 <div className="header">
-                    <Titulo>{title}</Titulo>
+                    <Titulo>{product.nome}</Titulo>
 
-                    {showRating && rating && (
+                    {showRating && product.avaliacao && (
                         <span>
-                            {rating}
+                            {product.avaliacao}
                             <img src={estrela} alt="estrela" />
                         </span>
                     )}
                 </div>
 
-                <Descricao>{description}</Descricao>
+                <Descricao>{product.descricao}</Descricao>
             </div>
+
             {onButtonClick ? (
                 <button onClick={onButtonClick}>{buttonLabel}</button>
             ) : (
