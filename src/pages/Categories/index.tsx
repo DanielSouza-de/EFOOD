@@ -98,7 +98,7 @@ const Categories = () => {
 
                             <AddButton>
                                 Adicionar ao carrinho -{' '}
-                                {formatarPreco(produtoSelecionado.preco!)}
+                                {formatarPreco(produtoSelecionado.preco ?? 0)}
                             </AddButton>
                         </Content>
                     </ModalContent>
