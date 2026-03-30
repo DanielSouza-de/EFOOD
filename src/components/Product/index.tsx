@@ -48,7 +48,7 @@ const Product = ({
             {onButtonClick ? (
                 <button onClick={onButtonClick}>{buttonLabel}</button>
             ) : (
-                <Link to="/categories">
+                <Link to={`/categories/${product.id}`}>
                     <button>{buttonLabel}</button>
                 </Link>
             )}

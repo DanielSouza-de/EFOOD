@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ProductsList from '../../components/ProductsList'
 import Header from '../../components/Header'
@@ -38,11 +39,16 @@ const Categories = () => {
     const [produtoSelecionado, setProdutoSelecionado] =
         useState<ProductType | null>(null)
 
+    const { id } = useParams()
+
     useEffect(() => {
         fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
             .then((res) => res.json())
             .then((data) => {
-                setRestaurante(data[0])
+                const restauranteSelecionado = data.find(
+                    (item: Restaurante) => item.id === Number(id)
+                )
+                setRestaurante(restauranteSelecionado)
             })
     }, [])
 
