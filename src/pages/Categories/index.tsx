@@ -50,7 +50,7 @@ const Categories = () => {
                 )
                 setRestaurante(restauranteSelecionado)
             })
-    }, [])
+    }, [id])
 
     if (!restaurante) return <h3>Carregando...</h3>
 
