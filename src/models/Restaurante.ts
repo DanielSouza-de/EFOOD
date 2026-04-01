@@ -1,3 +1,5 @@
+import { Product } from './Product'
+
 export type Restaurante = {
     id: number
     titulo: string
@@ -6,4 +8,5 @@ export type Restaurante = {
     tipo: string
     avaliacao: number
     destacado: boolean
+    cardapio: Product[]
 }

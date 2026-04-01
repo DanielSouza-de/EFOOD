@@ -1,10 +1,14 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import ProductsList from '../../components/ProductsList'
+import { useDispatch } from 'react-redux'
+import ProductsList, { formataPreco } from '../../components/ProductsList'
 import Header from '../../components/Header'
 import Hero from '../../components/Hero'
 import { Product as ProductType } from '../../models/Product'
+import { useGetRestauranteQuery } from '../../services/api'
 import closeIcon from '../../images/close.png'
+import { useState } from 'react'
+import { add, open } from '../../store/reducers/cart'
+
 import {
     Modal,
     ModalContent,
@@ -17,49 +21,17 @@ import {
     Info
 } from './styles'
 
-type Produto = {
-    id: number
-    nome: string
-    descricao: string
-    foto: string
-    preco: number
-    porcao: string
-}
-
-type Restaurante = {
-    id: number
-    titulo: string
-    tipo: string
-    capa: string
-    cardapio: Produto[]
-}
-
 const Categories = () => {
-    const [restaurante, setRestaurante] = useState<Restaurante | null>(null)
-    const [produtoSelecionado, setProdutoSelecionado] =
-        useState<ProductType | null>(null)
+    const dispatch = useDispatch()
 
     const { id } = useParams()
 
-    useEffect(() => {
-        fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
-            .then((res) => res.json())
-            .then((data) => {
-                const restauranteSelecionado = data.find(
-                    (item: Restaurante) => item.id === Number(id)
-                )
-                setRestaurante(restauranteSelecionado)
-            })
-    }, [id])
+    const { data: restaurante, isLoading } = useGetRestauranteQuery(Number(id))
 
-    if (!restaurante) return <h3>Carregando...</h3>
+    const [produtoSelecionado, setProdutoSelecionado] =
+        useState<ProductType | null>(null)
 
-    const formatarPreco = (valor: number) => {
-        return valor.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        })
-    }
+    if (isLoading || !restaurante) return <h3>Carregando...</h3>
 
     const produtosAdaptados: ProductType[] = restaurante.cardapio.map(
         (item) => ({
@@ -93,6 +65,7 @@ const Categories = () => {
                         <Content>
                             <div>
                                 <Title>{produtoSelecionado.nome}</Title>
+
                                 <Description>
                                     {produtoSelecionado.descricao}
                                 </Description>
@@ -102,9 +75,15 @@ const Categories = () => {
                                 </Info>
                             </div>
 
-                            <AddButton>
+                            <AddButton
+                                onClick={() => {
+                                    dispatch(add(produtoSelecionado))
+                                    dispatch(open())
+                                    setProdutoSelecionado(null)
+                                }}
+                            >
                                 Adicionar ao carrinho -{' '}
-                                {formatarPreco(produtoSelecionado.preco ?? 0)}
+                                {formataPreco(produtoSelecionado.preco ?? 0)}
                             </AddButton>
                         </Content>
                     </ModalContent>

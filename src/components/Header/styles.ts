@@ -74,6 +74,7 @@ export const Bar = styled.div`
         font-size: 14px;
         color: ${cores.rose};
         font-weight: bold;
+        cursor: pointer;
     }
 
     a {
