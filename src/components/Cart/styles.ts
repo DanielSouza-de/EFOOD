@@ -35,6 +35,8 @@ export const Sidebar = styled.aside`
     padding: 32px 8px 0 8px;
     max-width: 360px;
     width: 100%;
+    height: 100vh;
+    overflow-y: auto;
 
     ${ButtonContainer} {
         max-width: 100%;
