@@ -141,11 +141,11 @@ const Checkout = ({ onBackToCart }: Props) => {
                     <S.Title>Pedido realizado - {data.orderId}</S.Title>
 
                     <p>
-                        Seu pedido já está em preparação e será entregue em
-                        breve.
+                        Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
                     </p>
-                    <p>Não é permitido cobrar valores extras na entrega.</p>
-                    <p>Bom apetite! 🍽️</p>
+                    <p>Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras.</p>
+                    <p>Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem-estar durante a refeição.</p>
+                    <p>Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!</p>
 
                     <Button type="button" onClick={onBackToCart}>
                         Concluir
@@ -218,7 +218,7 @@ const Checkout = ({ onBackToCart }: Props) => {
 
                             <S.Row>
                                 <S.InputGroup>
-                                    <label>Complemento</label>
+                                    <label>Complemento (opcional)</label>
                                     <input
                                         name="complement"
                                         onChange={form.handleChange}
