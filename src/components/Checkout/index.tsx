@@ -39,38 +39,62 @@ const Checkout = ({ onBackToCart }: Props) => {
         },
 
         validationSchema: Yup.object({
-            fullName: Yup.string().required('Obrigatório'),
-            address: Yup.string().required('Obrigatório'),
-            city: Yup.string().required('Obrigatório'),
-            cep: Yup.string().required('Obrigatório'),
-            number: Yup.string().required('Obrigatório'),
+            fullName: Yup.string()
+                .matches(/^[A-Za-zÀ-ÿ\s]+$/, 'Apenas letras')
+                .required('Obrigatório'),
 
-            // 💳 valida só no step 2
+            address: Yup.string().required('Obrigatório'),
+
+            city: Yup.string()
+                .matches(/^[A-Za-zÀ-ÿ\s]+$/, 'Apenas letras')
+                .required('Obrigatório'),
+
+            cep: Yup.string().required('Obrigatório'),
+
+            number: Yup.string()
+                .matches(/^\d+$/, 'Apenas números')
+                .required('Obrigatório'),
+
             cardName: Yup.string().when([], {
                 is: () => step === 2,
-                then: (schema) => schema.required('Obrigatório')
+                then: (schema) =>
+                    schema
+                        .matches(/^[A-Za-zÀ-ÿ\s]+$/, 'Apenas letras')
+                        .required('Obrigatório')
             }),
 
             cardNumber: Yup.string().when([], {
                 is: () => step === 2,
                 then: (schema) =>
-                    schema.min(19, 'Número inválido').required('Obrigatório')
+                    schema
+                        .matches(/^[0-9 ]+$/, 'Apenas números')
+                        .min(19, 'Número inválido')
+                        .required('Obrigatório')
             }),
 
             cardCode: Yup.string().when([], {
                 is: () => step === 2,
                 then: (schema) =>
-                    schema.min(3, 'CVV inválido').required('Obrigatório')
+                    schema
+                        .matches(/^\d+$/, 'Apenas números')
+                        .min(3, 'CVV inválido')
+                        .required('Obrigatório')
             }),
 
             expiresMonth: Yup.string().when([], {
                 is: () => step === 2,
-                then: (schema) => schema.required('Obrigatório')
+                then: (schema) =>
+                    schema
+                        .matches(/^\d+$/, 'Apenas números')
+                        .required('Obrigatório')
             }),
 
             expiresYear: Yup.string().when([], {
                 is: () => step === 2,
-                then: (schema) => schema.required('Obrigatório')
+                then: (schema) =>
+                    schema
+                        .matches(/^\d+$/, 'Apenas números')
+                        .required('Obrigatório')
             })
         }),
 
@@ -174,7 +198,16 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <label>Quem irá receber</label>
                                     <input
                                         name="fullName"
-                                        onChange={form.handleChange}
+                                        value={form.values.fullName}
+                                        onChange={(e) =>
+                                            form.setFieldValue(
+                                                'fullName',
+                                                e.target.value.replace(
+                                                    /[^A-Za-zÀ-ÿ\s]/g,
+                                                    ''
+                                                )
+                                            )
+                                        }
                                         onBlur={form.handleBlur}
                                         className={hasError('fullName')}
                                     />
@@ -186,6 +219,7 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <label>Endereço</label>
                                     <input
                                         name="address"
+                                        value={form.values.address}
                                         onChange={form.handleChange}
                                         onBlur={form.handleBlur}
                                         className={hasError('address')}
@@ -198,7 +232,16 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <label>Cidade</label>
                                     <input
                                         name="city"
-                                        onChange={form.handleChange}
+                                        value={form.values.city}
+                                        onChange={(e) =>
+                                            form.setFieldValue(
+                                                'city',
+                                                e.target.value.replace(
+                                                    /[^A-Za-zÀ-ÿ\s]/g,
+                                                    ''
+                                                )
+                                            )
+                                        }
                                         onBlur={form.handleBlur}
                                         className={hasError('city')}
                                     />
@@ -211,6 +254,7 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <InputMask
                                         mask="99999-999"
                                         name="cep"
+                                        value={form.values.cep}
                                         onChange={form.handleChange}
                                         onBlur={form.handleBlur}
                                         className={hasError('cep')}
@@ -221,7 +265,16 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <label>Número</label>
                                     <input
                                         name="number"
-                                        onChange={form.handleChange}
+                                        value={form.values.number}
+                                        onChange={(e) =>
+                                            form.setFieldValue(
+                                                'number',
+                                                e.target.value.replace(
+                                                    /\D/g,
+                                                    ''
+                                                )
+                                            )
+                                        }
                                         onBlur={form.handleBlur}
                                         className={hasError('number')}
                                     />
@@ -233,6 +286,7 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <label>Complemento (opcional)</label>
                                     <input
                                         name="complement"
+                                        value={form.values.complement}
                                         onChange={form.handleChange}
                                     />
                                 </S.InputGroup>
@@ -259,7 +313,16 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <label>Nome no cartão</label>
                                     <input
                                         name="cardName"
-                                        onChange={form.handleChange}
+                                        value={form.values.cardName}
+                                        onChange={(e) =>
+                                            form.setFieldValue(
+                                                'cardName',
+                                                e.target.value.replace(
+                                                    /[^A-Za-zÀ-ÿ\s]/g,
+                                                    ''
+                                                )
+                                            )
+                                        }
                                         onBlur={form.handleBlur}
                                         className={hasError('cardName')}
                                     />
@@ -272,6 +335,7 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <InputMask
                                         mask="9999 9999 9999 9999"
                                         name="cardNumber"
+                                        value={form.values.cardNumber}
                                         onChange={form.handleChange}
                                         onBlur={form.handleBlur}
                                         className={hasError('cardNumber')}
@@ -283,6 +347,7 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <InputMask
                                         mask="999"
                                         name="cardCode"
+                                        value={form.values.cardCode}
                                         onChange={form.handleChange}
                                         onBlur={form.handleBlur}
                                         className={hasError('cardCode')}
@@ -296,6 +361,7 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <InputMask
                                         mask="99"
                                         name="expiresMonth"
+                                        value={form.values.expiresMonth}
                                         onChange={form.handleChange}
                                         onBlur={form.handleBlur}
                                         className={hasError('expiresMonth')}
@@ -307,6 +373,7 @@ const Checkout = ({ onBackToCart }: Props) => {
                                     <InputMask
                                         mask="99"
                                         name="expiresYear"
+                                        value={form.values.expiresYear}
                                         onChange={form.handleChange}
                                         onBlur={form.handleBlur}
                                         className={hasError('expiresYear')}
