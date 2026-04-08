@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 
 type Props = {
@@ -58,7 +58,7 @@ export const Titulo = styled.h2`
     font-size: 36px;
     max-width: 540px;
     width: 100%;
-    color: ${cores.rose};
+    color: ${colors.pink};
     text-align: center;
     font-weight: 900;
     line-height: 42px;
@@ -72,14 +72,14 @@ export const Bar = styled.div`
 
     span {
         font-size: 14px;
-        color: ${cores.rose};
+        color: ${colors.pink};
         font-weight: bold;
         cursor: pointer;
     }
 
     a {
         text-decoration: none;
-        color: ${cores.rose};
+        color: ${colors.pink};
         font-weight: bold;
     }
 `

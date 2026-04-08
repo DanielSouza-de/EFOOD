@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { Card } from '../Product/styles'
 
 export const Container = styled.div`
     padding: 32px 0;
-    background-color: ${cores.fundo};
+    background-color: ${colors.background};
 
     ${Card} {
-        background-color: ${cores.branca};
-        color: ${cores.rose};
+        background-color: ${colors.white};
+        color: ${colors.pink};
     }
 `
 

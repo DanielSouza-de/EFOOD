@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Modal = styled.div`
     position: fixed;
@@ -18,8 +18,8 @@ export const Modal = styled.div`
 `
 
 export const ModalContent = styled.div`
-    background: ${cores.rose};
-    color: ${cores.fundo2};
+    background: ${colors.pink};
+    color: ${colors.background2};
 
     padding: 32px;
     display: flex;
@@ -67,8 +67,8 @@ export const CloseButton = styled.button`
 `
 
 export const AddButton = styled.button`
-    background: ${cores.fundo2};
-    color: ${cores.rose};
+    background: ${colors.background2};
+    color: ${colors.pink};
     border: none;
     padding: 8px 12px;
     font-weight: bold;

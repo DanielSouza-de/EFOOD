@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 
 type CardProps = {
@@ -14,17 +14,17 @@ export const Card = styled.div<CardProps>`
     position: relative;
 
     color: ${(props) =>
-        props.variant === 'category' ? cores.fundo2 : cores.preta};
+        props.variant === 'category' ? colors.background2 : colors.black};
 
     ${(props) =>
         props.variant === 'category' &&
         `
     ${Titulo} {
-        color: ${cores.fundo2};
+        color: ${colors.background2};
     }
 
     ${Descricao} {
-        color: ${cores.fundo2};
+        color: ${colors.background2};
     }
 `}
 
@@ -32,7 +32,7 @@ export const Card = styled.div<CardProps>`
         position: relative;
 
         background-color: ${(props) =>
-            props.variant === 'category' ? `${cores.rose}` : 'transparent'};
+            props.variant === 'category' ? `${colors.pink}` : 'transparent'};
 
         padding: ${(props) => (props.variant === 'category' ? '8px' : '0')};
     }
@@ -55,12 +55,12 @@ export const Card = styled.div<CardProps>`
 
     .body {
         border: ${(props) =>
-            props.variant === 'category' ? 'none' : `1px solid ${cores.rose}`};
+            props.variant === 'category' ? 'none' : `1px solid ${colors.pink}`};
 
         border-top: none;
 
         background-color: ${(props) =>
-            props.variant === 'category' ? cores.rose : cores.branca};
+            props.variant === 'category' ? colors.pink : colors.white};
 
         display: flex;
         flex-direction: column;
@@ -98,10 +98,10 @@ export const Card = styled.div<CardProps>`
         width: 100%;
 
         background-color: ${(props) =>
-            props.variant === 'category' ? cores.fundo2 : cores.rose};
+            props.variant === 'category' ? colors.background2 : colors.pink};
 
         color: ${(props) =>
-            props.variant === 'category' ? cores.rose : cores.branca};
+            props.variant === 'category' ? colors.pink : colors.white};
 
         border: none;
         padding: 8px;

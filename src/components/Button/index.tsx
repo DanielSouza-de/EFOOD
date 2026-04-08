@@ -1,26 +1,39 @@
-import { ButtonContainer, ButtonLink } from './styles'
+import * as S from './styles'
 
-type Props = {
-    type: 'button' | 'link'
-    title: string
+export type Props = {
+    type?: 'button' | 'link' | 'submit'
+    title?: string
     to?: string
     onClick?: () => void
-    children: string
+    children: React.ReactNode
+    disabled?: boolean
 }
 
-const Button = ({ type, title, to, onClick, children }: Props) => {
-    if (type === 'button') {
+const Button = ({
+    type = 'button',
+    title,
+    to,
+    onClick,
+    children,
+    disabled
+}: Props) => {
+    if (type === 'link') {
         return (
-            <ButtonContainer type="button" title={title} onClick={onClick}>
+            <S.ButtonLink to={to as string} title={title}>
                 {children}
-            </ButtonContainer>
+            </S.ButtonLink>
         )
     }
 
     return (
-        <ButtonLink to={to as string} title={title}>
+        <S.ButtonContainer
+            type={type}
+            title={title}
+            onClick={onClick}
+            disabled={disabled}
+        >
             {children}
-        </ButtonLink>
+        </S.ButtonContainer>
     )
 }
 

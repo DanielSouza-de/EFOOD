@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Container = styled.footer`
-    background-color: ${cores.fundo2};
+    background-color: ${colors.background2};
     padding: 40px 0;
 `
 
@@ -43,6 +43,6 @@ export const Link = styled.a`
 export const Copy = styled.p`
     max-width: 600px;
     text-align: center;
-    color: ${cores.rose};
+    color: ${colors.pink};
     font-size: 12px;
 `

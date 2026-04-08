@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Container = styled.div`
     width: 100%;
@@ -40,14 +40,14 @@ export const Content = styled.div`
 `
 
 export const Tipo = styled.span`
-    color: ${cores.branca};
+    color: ${colors.white};
     font-size: 32px;
     opacity: 0.7;
     display: block;
 `
 
 export const Titulo = styled.h2`
-    color: ${cores.branca};
+    color: ${colors.white};
     font-size: 32px;
     font-weight: 700;
     line-height: 38px;
